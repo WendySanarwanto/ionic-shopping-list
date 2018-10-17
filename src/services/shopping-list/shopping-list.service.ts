@@ -33,7 +33,11 @@ export class ShoppingListService {
     return this.shoppingListCollection.add(item);
   }
 
-  updateItem(item: any): any {
+  updateItem(item: Item): any {
     return this.shoppingListCollection.doc(item.id).update(item);
+  }
+
+  removeItem(item: Item){
+    return this.shoppingListCollection.doc(item.id).delete();
   }
 }
