@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Item } from '../../../www/build/vendor';
 import { ShoppingListService } from '../../services/shopping-list/shopping-list.service';
+import { ToastService } from '../../services/toast/toast.service';
+import { Item } from '../../models/items/item.model';
 
 /**
  * Generated class for the EditShoppingItemPage page.
@@ -19,7 +20,7 @@ export class EditShoppingItemPage {
   item: Item
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private shopping: ShoppingListService) {
+    private shopping: ShoppingListService, private toastService: ToastService) {
   }
 
   ionViewWillLoad() {
@@ -28,6 +29,7 @@ export class EditShoppingItemPage {
 
   saveItem(item: Item){
     this.shopping.updateItem(item).then(() => {
+      this.toastService.show(`${item.name} saved!`);
       this.navCtrl.setRoot('HomePage');
     });
   }
