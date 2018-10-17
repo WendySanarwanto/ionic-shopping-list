@@ -28,12 +28,15 @@ export class AddShoppingItemPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddShoppingItemPage');
+    console.log('[DEBUG] - <AddShoppingItemPage.ionViewDidLoad> is loaded.');
   }
 
   addItem(item: Item){
     this.shopping.addItem(item).then(ref => {
-      console.log(`[DEBUG] - <AddShoppingItem.addItem> ref.key: \n`, ref.key);
+      console.log(`[DEBUG] - <AddShoppingItem.addItem> ref.id: \n`, ref.id);
+
+      // Move back to the Homepage and also carrying the created document's id
+      this.navCtrl.setRoot('HomePage', { id: ref.id });
     });
   }
 }
